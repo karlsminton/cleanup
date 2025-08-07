@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://bh18ww2gsb2hu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0r02p"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b5ayd"]
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b5ayd"]
+size = Vector3(0.1, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5lt6y"]
+size = Vector3(0.1, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5lt6y"]
+size = Vector3(10, 1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8k7wh"]
+size = Vector3(10, 1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8k7wh"]
+size = Vector3(10, 1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iufkg"]
+size = Vector3(10, 1, 0.1)
+
+[node name="TestScene" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_0r02p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_b5ayd")
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("BoxShape3D_b5ayd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+mesh = SubResource("BoxMesh_5lt6y")
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+shape = SubResource("BoxShape3D_b5ayd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2"]
+mesh = SubResource("BoxMesh_5lt6y")
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
+constant_angular_velocity = Vector3(0, -0.00261799, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+shape = SubResource("BoxShape3D_5lt6y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall3"]
+mesh = SubResource("BoxMesh_8k7wh")
+
+[node name="Wall4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
+shape = SubResource("BoxShape3D_8k7wh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall4"]
+mesh = SubResource("BoxMesh_iufkg")
+
+[node name="PlayerPerspective" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+shadow_enabled = true
