@@ -1,4 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh18ww2gsb2hu"]
+[gd_scene load_steps=10 format=3 uid="uid://bh18ww2gsb2hu"]
+
+[ext_resource type="PackedScene" uid="uid://dnr5de2w728nf" path="res://Scenes/player.tscn" id="1_b5ayd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0r02p"]
 size = Vector3(10, 0.1, 10)
@@ -72,9 +74,9 @@ shape = SubResource("BoxShape3D_8k7wh")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall4"]
 mesh = SubResource("BoxMesh_iufkg")
 
-[node name="PlayerPerspective" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
 shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_b5ayd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
