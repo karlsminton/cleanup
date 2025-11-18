@@ -16,5 +16,8 @@ func _input(event: InputEvent) -> void:
 	camera._input(event);
 	control._input(event);
 
+func _physics_process(delta: float) -> void:
+	control._physics_process(delta);
+
 func _exit_tree() -> void:
 	control._exit_tree();
