@@ -6,6 +6,8 @@ var rot_y = 0;
 # PlayerMovement
 var target_velocity: Vector3; 
 var max_speed: int = 5;
+var jump: int = 8;
+var jumping_rate: int = 0;
 
 
 func _ready() -> void:
@@ -24,8 +26,8 @@ func _input(event: InputEvent) -> void:
 		$View.transform.basis = Basis();
 		$Node3D.transform.basis = Basis();
 		
-		$View.rotate_object_local(Vector3(0, 1, 0), rot_x);
-		$View.rotate_object_local(Vector3(1, 0, 0), rot_y);
+		$View.rotate_object_local(Vector3(0, 1, 0), -rot_x);
+		$View.rotate_object_local(Vector3(1, 0, 0), -rot_y);
 		
 		$Node3D.rotate_object_local(Vector3(0, 1, 0), $View.rotation.y);
 	
@@ -55,13 +57,23 @@ func _physics_process(_delta) -> void:
 		
 	if Input.is_key_label_pressed(KEY_S):
 		direction.z = 1;
-		
+	
+	if not is_on_floor():
+		print_debug(jumping_rate)
+		jumping_rate -= 1;
+	else:
+		jumping_rate = 0;
+	
+	if is_on_floor() and Input.is_key_label_pressed(KEY_SPACE):
+		jumping_rate = jump;
+	
+	
 	direction = direction.normalized();
 	target_velocity.x = direction.x * max_speed;
 	target_velocity.z = direction.z * max_speed;
-	target_velocity.y = 0;
-	velocity = $View.global_transform.basis * target_velocity;
-	velocity.y = 0; # todo - probably shouldn't have to 0 this here (possible issues implementing jump)
+	target_velocity.y = 1 * jumping_rate;
+	
+	velocity = $Node3D.global_transform.basis * target_velocity;
 	move_and_slide();
 
 func _exit_tree() -> void:
